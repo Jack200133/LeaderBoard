@@ -31,6 +31,12 @@ function App() {
     const milliseconds = String(time % 1000).padStart(4, '0');
     return `${minutes}:${seconds}:${milliseconds}`;
   };
+  const removeRecord = (indexToRemove) => {
+    setLeaderboard((prevLeaderboard) =>
+      prevLeaderboard.filter((_, index) => index !== indexToRemove)
+    );
+  };
+
 
   const addRecord = () => {
     const timeParts = time.split(':');
@@ -64,7 +70,7 @@ function App() {
 
       <img src="../public/vite.svg" className="w-40 h-40 absolute top-10 left-20" />
 
-      <h1 className="text-3xl font-bold underline">Leaderboard</h1>
+      <h1 className="text-7xl font-bold underline">Leaderboard</h1>
       <div className='flex w-full justify-center gap-8 my-8'>
         <input
           type="text"
@@ -86,13 +92,13 @@ function App() {
       </div>
       <div className='flex items-center gap-4 mb-10'>
         <button
-          className='rounded-xl hover:border-blue-800 hover:border-2 m-0 box-border w-32 h-12'
+          className='rounded-xl hover:border-blue-800 hover:border-2 m-0 box-border w-32 h-12 bg-white/10 backdrop-blur-md border-white border-1'
           onClick={startTimer}>Iniciar</button>
         <button
-          className='rounded-xl hover:border-red-500 hover:border-2 m-0 box-border w-32 h-12'
+          className='rounded-xl hover:border-red-500 hover:border-2 m-0 box-border w-32 h-12 bg-white/20 backdrop-blur-md border-white border-1'
           onClick={pauseTimer}>Pausar</button>
         <button
-          className='rounded-xl hover:border-purple-600 hover:border-2 m-0 box-border w-32 h-12'
+          className='rounded-xl hover:border-purple-600 hover:border-2 m-0 box-border w-32 h-12 bg-white/30 backdrop-blur-md border-white border-1'
           onClick={resetTimer}>Reiniciar</button>
         <div
           onClick={copyTimeToClipboard}
@@ -121,7 +127,7 @@ function App() {
                   className="backdrop-blur-md bg-white/20 flex flex-row items-center justify-between text-white text-xl font-bold w-screen px-32"
                   key={index}>
                   <li className='w-40'>{index + 1}</li>
-                  <li className='w-90'>{record.name}</li>
+                  <li className='w-90' onDoubleClick={() => removeRecord(index)}>{record.name}</li>
                   <li
                     className='w-40'
                   >{record.displayTime}</li>
@@ -134,7 +140,7 @@ function App() {
                 className="backdrop-blur-md bg-white/10 flex flex-row items-center justify-between text-white text-xl font-bold w-screen px-32"
                 key={index}>
                 <li className='w-40'>{index + 1}</li>
-                <li className='w-90'>{record.name}</li>
+                <li className='w-90' onDoubleClick={() => removeRecord(index)}>{record.name}</li>
                 <li
                   className='w-40'
                 >{record.displayTime}</li>
