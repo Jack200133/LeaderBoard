@@ -62,6 +62,7 @@ function App() {
   return (
     <div className="bg-gradient-to-r from-blue-800 via-purple-500 to-red-500 animate-gradient-x w-screen h-screen flex flex-col items-center justify-start pt-16">
 
+      <img src="../public/vite.svg" className="w-40 h-40 absolute top-10 left-20" />
 
       <h1 className="text-3xl font-bold underline">Leaderboard</h1>
       <div className='flex w-full justify-center gap-8 my-8'>
